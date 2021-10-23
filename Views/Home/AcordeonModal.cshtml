@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Acordeon y modal";
+    string[] cursos = { "MA-1001", "MA-1002", "MA-1003", "MA-1004", "MA-1005", "MA-1006" };
+}
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <div>
+        <h2>@ViewData["Title"]</h2>
+    </div>
+
+    <div>
+        <h1>Modal</h1>
+        <input type="button" class="btn-info" id="ver" value="Abrir modal" />
+        <div id="vtn-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Esto es un formulario en ASP.NET core 2.1</h1>
+                <h2>No tiene ninguna funcionalidad</h2>
+                <h3>Pero se podría hacer que funcione con lógica, métodos de HTTP post/get, etc</h3>
+                <h4>O aquí puede agregar cualquier cosa....</h4>
+                <form>
+                    <h5>Formulario</h5>
+                    <input type="email" placeholder="Escriba su correo" /> <br />
+                    <input type="password" placeholder="Escriba su contraseña" /> <br />
+                    <input type="submit" class="btn btn-success" value="Ingresar" />
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <h1>Cursos de mate aplicada de la UCR...</h1>
+        <div class="col-md-6">
+            @for (var curso = 0; curso < (cursos.Length) / 2; ++curso)
+            {
+                <button class="accordion"> @cursos[curso] </button>
+                <div class="panel">
+                    <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                </div>
+            }
+
+        </div>
+
+        <div class="col-md-6">
+            @for (var curso = (int)((cursos.Length) / 2); curso < cursos.Length; ++curso)
+            {
+                <button class="accordion"> @cursos[curso] </button>
+                <div class="panel">
+                    <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                    <a class="btn alert-info" href="#">Grupo # </a>  <p>(Total de estudiantes)</p> <br /> <br />
+                </div>
+            }
+
+
+
+
+        </div>
+    </div>
+
+
+    <script src="~/js/ventanaModal.js"></script>
+    <script src="~/js/acordeon.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/ventanaModal.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/acordeon.css" />
+</body>
+
+</html>

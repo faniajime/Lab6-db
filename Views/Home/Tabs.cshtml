@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Quiz matematica";
+}
+<h2>@ViewData["Title"]</h2>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+</head>
+
+<body>
+    <div>
+
+        <label for="cantidad">Digite la cantidad de ejercicios que desea realizar</label><br>
+        <input type="number" id="CantidadEjercicios" name="numEjercicios" max="20" min="5"><br>
+        <button onclick="Select()">Confirmar</button>                                                                              <br />
+
+
+    </div>
+
+    <div class="exercise__body">
+        <ol class="tasks" id="tasks"> </ol>
+    </div>
+
+    <script src="~/js/tabs.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/tabs.css" />
+</body>
+
+</html>
