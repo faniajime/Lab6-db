@@ -1,0 +1,24 @@
+﻿.qcontainer{
+    padding:5px;
+}
+
+.hint{
+    padding-inline:5px;
+}
+
+button{
+    padding-right: 40px;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2{
+    font-size:60px;
+}
+
+label{
+    padding:10px;
+    font-size: 15px;
+}

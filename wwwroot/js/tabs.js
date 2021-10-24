@@ -101,11 +101,14 @@
     },
 ];
 
+let checked = false;
+
 function clear(tamanio) {
 
     for (var i = 0; i < tamanio; i++) {
         $("#tasks").empty();
     }
+    checked = false;
 }
 
 
@@ -116,12 +119,78 @@ function Select() {
     if (n >= 5 & n <= 20) {
         clear(n);
         for (var i = 0; i < n; i++) {
-            $("#tasks").append('<li> <span class="hint">' + questions[i].question + '</span> <input type="number" size="21"             value=""           id="solution1_1" tabindex="11"                   name="solution1_1"                               class="ex_textfield"                 autocapitalize="off" requerid> </li>');
+            $("#tasks").append('<div class="qcontainer "><li class="exercises"> <span class="hint">' + questions[i].question + '</span> <input type="number" class = "answers" size="21"             value=""           id="' + questions[i].id +'" tabindex="11"                   name="solution1_1"                               class="ex_textfield"                 autocapitalize="off" requerid> </li></div>');
         }
+        $("#tasks").append('<br/>');
+        $("#tasks").append('<button onclick="Check()"> Revisar quiz </button>');
+        $("#tasks").append('<i>             </i>');
+        $("#tasks").append('<button onclick="Answers()"> Ver respuestas </button>');
+
     } else {
         clear(n);
         document.getElementById("CantidadEjercicios").value = "";
-        alert("El numero debe estar entre 5 y 20");
+        alert("El numero debe estar enthis.checked = false;tre 5 y 20");
     }
+    checked = false;
+    answered = false;
+
+}
+
+
+function Check() {
+    if (!checked) {
+        let answers = document.getElementsByClassName("answers");
+        var n = answers.length;
+        let exercises = document.getElementsByClassName("exercises");
+        for (let i = 0; i < n; i++) {
+            if (answers[i].value === questions[i].answer) {
+                answers[i].style.border = "1px solid green";
+                let t = document.createElement("b");
+                t.innerHTML = "Respuesta correcta." + '<br/>';
+                t.style.color = 'green';
+                exercises[i].appendChild(t);
+
+            } else {
+                answers[i].style.border = "1px solid red";
+                let t = document.createElement("b");
+                t.innerHTML = "Respuesta incorrecta.";
+                t.style.color = 'red';
+                exercises[i].appendChild(t);
+                let a = document.createElement("i");
+                a.innerHTML = " <br/> La respuesta correcta es: " + questions[i].answer + '<br/>';
+                exercises[i].appendChild(a);
+                
+            }
+        }
+        checked = true;
+    }
+    
+    if (answered) {
+        Select();
+        Check();
+    }
+}
+
+let answered = false;
+
+function Answers() {
+    if (!answered) {
+        let answers = document.getElementsByClassName("answers");
+        var n = answers.length;
+        let exercises = document.getElementsByClassName("exercises");
+        for (let i = 0; i < n; i++) {
+            answers[i].disabled = true;
+            let t = document.createElement("b");
+            t.innerHTML = "La respuesta correcta es " + questions[i].answer + '<br/>';
+            t.style.color = 'green';
+            exercises[i].appendChild(t);
+        }
+        answered = true;
+    }
+    if (checked) {
+        Select();
+        Answers();
+    }
+
 
 }
